@@ -1,51 +1,14 @@
-<html>
-    <head>
-        <title>My blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">My Blog</a></h1>
-        </div>
-        <!-- отображаем все посты -->
-        <div>
-            {% for post in posts %}
-                <div>
-                    <p>published: {{post.published_date}}</p>
-                    <h1><a href="">{{post.title }}</a></h1>
-                    <!-- |linebreaksbr прогоняет текст через фильтр для преобразования переносов строк в параграфы.-->
-                    <p>{{post.text|linebreaksbr}}</p>
-                </div>
-            {% endfor %}
-        </div>
+{% extends 'blog/base.html' %}
 
-
-<!--        <div>-->
-<!--            <p>published: 23.12.2021, 15:01</p>-->
-<!--            <h2><a href="">My first post</a></h2>-->
-<!--            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>-->
-<!--        </div>-->
-
-<!--        <div>-->
-<!--            <p>published: 23.12.2021, 15:01</p>-->
-<!--            <h2><a href="">My second post</a></h2>-->
-<!--            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>-->
-<!--        </div>-->
-    </body>
-</html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
-
-
+{% for post in posts %}
+<div class="post">
+    <div class="date">
+        <p>Опубликовано: {{ post.published_date }}</p>
+    </div>
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endfor %}
 
 <!--<h1>Заголовок</h1> — главный заголовок страницы-->
 <!--<h2>Подзаголовок</h2> — для заголовков второго уровня-->
